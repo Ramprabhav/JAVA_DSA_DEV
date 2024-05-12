@@ -2,19 +2,23 @@ import java.util.*;
 public class prime_number {
     public static void prime(int num)
     {
-        int i;
+        int i,m=0;
         if(num==2)
     System.out.println(num+"prime number");
         for(i=2;i<=num-1;i++)
         {
             if(num%i==0)
-            {
-            System.out.println(num +" is not prime number");
+           {
+            m=1;
             break;
            }
            
          }
-        System.out.println(num+"prime number");
+         if (m==1) {
+            System.out.println(num +" is not prime number");
+            
+         }
+        System.out.println(num+" is prime number");
     };
     public static void main(String[]args)
     {
