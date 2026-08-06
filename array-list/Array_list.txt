@@ -1,0 +1,933 @@
+# ArrayList in Java — Complete Notes
+
+## 1. What is ArrayList?
+
+`ArrayList` is a **resizable (dynamic) array** provided by Java's Collections Framework.
+
+* **Array** → Fixed size
+* **ArrayList** → Dynamic size; it can grow automatically when elements are added.
+
+### Real-Life Example
+
+Imagine a classroom:
+
+* **Array:** There are 40 fixed chairs. Even if only 10 students come, the number of chairs remains 40.
+* **ArrayList:** Chairs can be added or removed according to the number of students.
+
+```java
+ArrayList<Integer> list = new ArrayList<>();
+```
+
+---
+
+## 2. Why Do We Need ArrayList?
+
+### Array
+
+```java
+int arr[] = new int[5];
+```
+
+The size is fixed.
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+You cannot directly increase the size of this array.
+
+### ArrayList
+
+```java
+ArrayList<Integer> list = new ArrayList<>();
+```
+
+The size can grow automatically.
+
+```java
+list.add(10);
+list.add(20);
+list.add(30);
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+---
+
+# 3. Import ArrayList
+
+Before using `ArrayList`, import it:
+
+```java
+import java.util.ArrayList;
+```
+
+For sorting and other utility operations, we can also import:
+
+```java
+import java.util.Collections;
+```
+
+---
+
+# 4. Creating an ArrayList
+
+### Integer
+
+```java
+ArrayList<Integer> list = new ArrayList<>();
+```
+
+### String
+
+```java
+ArrayList<String> list = new ArrayList<>();
+```
+
+### Character
+
+```java
+ArrayList<Character> list = new ArrayList<>();
+```
+
+### Boolean
+
+```java
+ArrayList<Boolean> list = new ArrayList<>();
+```
+
+---
+
+# 5. Wrapper Classes
+
+`ArrayList` stores **objects**, not primitive data types.
+
+Therefore, we use **wrapper classes** for primitive types.
+
+| Primitive Type | Wrapper Class |
+| -------------- | ------------- |
+| `int`          | `Integer`     |
+| `char`         | `Character`   |
+| `double`       | `Double`      |
+| `float`        | `Float`       |
+| `long`         | `Long`        |
+| `boolean`      | `Boolean`     |
+| `byte`         | `Byte`        |
+| `short`        | `Short`       |
+
+### Wrong
+
+```java
+ArrayList<int> list = new ArrayList<>();
+```
+
+### Correct
+
+```java
+ArrayList<Integer> list = new ArrayList<>();
+```
+
+Java automatically converts between primitives and their wrapper classes in many situations.
+
+```java
+int a = 10;
+
+Integer b = a;    // Autoboxing
+
+int c = b;        // Unboxing
+```
+
+---
+
+# 6. Adding Elements
+
+## `add(element)`
+
+Adds an element at the end.
+
+```java
+list.add(10);
+list.add(20);
+list.add(30);
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+---
+
+## `add(index, element)`
+
+Adds an element at a specific index.
+
+```java
+list.add(1, 100);
+```
+
+Before:
+
+```text
+[10, 20, 30]
+```
+
+After:
+
+```text
+[10, 100, 20, 30]
+```
+
+The existing elements are shifted to the right.
+
+---
+
+# 7. Printing an ArrayList
+
+```java
+System.out.println(list);
+```
+
+Output:
+
+```text
+[10, 100, 20, 30]
+```
+
+---
+
+# 8. Getting an Element
+
+Use `get(index)` to access an element.
+
+```java
+System.out.println(list.get(2));
+```
+
+Output:
+
+```text
+20
+```
+
+Remember: ArrayList uses **zero-based indexing**.
+
+```text
+Index:   0    1    2    3
+Value:  10   100   20   30
+```
+
+---
+
+# 9. Updating an Element
+
+Use `set(index, value)`.
+
+```java
+list.set(1, 50);
+```
+
+Before:
+
+```text
+[10, 100, 20]
+```
+
+After:
+
+```text
+[10, 50, 20]
+```
+
+### Important
+
+* `add()` → inserts a new element
+* `set()` → replaces an existing element
+
+---
+
+# 10. Removing Elements
+
+## `remove(index)`
+
+Removes the element at a particular index.
+
+```java
+list.remove(1);
+```
+
+Example:
+
+```text
+Before: [10, 50, 20]
+After:  [10, 20]
+```
+
+---
+
+## `remove(Object)`
+
+Removes a specific value.
+
+```java
+list.remove(Integer.valueOf(20));
+```
+
+This removes the value `20`.
+
+### Important Interview Point
+
+For `ArrayList<Integer>`:
+
+```java
+list.remove(2);
+```
+
+means:
+
+> Remove the element at **index 2**
+
+While:
+
+```java
+list.remove(Integer.valueOf(2));
+```
+
+means:
+
+> Remove the **value 2**
+
+---
+
+# 11. Size of ArrayList
+
+Use `size()` to find the number of elements.
+
+```java
+System.out.println(list.size());
+```
+
+Example:
+
+```text
+[10, 20, 30]
+```
+
+Output:
+
+```text
+3
+```
+
+### Remember
+
+Array:
+
+```java
+arr.length
+```
+
+ArrayList:
+
+```java
+list.size()
+```
+
+---
+
+# 12. Checking if ArrayList is Empty
+
+Use:
+
+```java
+list.isEmpty();
+```
+
+It returns:
+
+```text
+true
+```
+
+or:
+
+```text
+false
+```
+
+Example:
+
+```java
+if(list.isEmpty()){
+    System.out.println("List is empty");
+}
+```
+
+---
+
+# 13. Checking if an Element Exists
+
+Use:
+
+```java
+list.contains(20);
+```
+
+Output:
+
+```text
+true
+```
+
+If the element doesn't exist:
+
+```text
+false
+```
+
+---
+
+# 14. Finding the Index of an Element
+
+Use:
+
+```java
+list.indexOf(30);
+```
+
+Example:
+
+```text
+[10, 20, 30]
+```
+
+Output:
+
+```text
+2
+```
+
+If the element doesn't exist, `indexOf()` returns:
+
+```text
+-1
+```
+
+---
+
+# 15. Finding the Last Index
+
+Use:
+
+```java
+list.lastIndexOf(30);
+```
+
+This is useful when duplicate values exist.
+
+Example:
+
+```text
+[10, 30, 20, 30]
+```
+
+```java
+list.indexOf(30);      // 1
+list.lastIndexOf(30);  // 3
+```
+
+---
+
+# 16. Clearing the ArrayList
+
+Use:
+
+```java
+list.clear();
+```
+
+This removes all elements.
+
+Output:
+
+```text
+[]
+```
+
+---
+
+# 17. Traversing an ArrayList
+
+## Using a Normal For Loop
+
+```java
+for(int i = 0; i < list.size(); i++){
+    System.out.println(list.get(i));
+}
+```
+
+---
+
+## Using Enhanced For Loop
+
+```java
+for(int x : list){
+    System.out.println(x);
+}
+```
+
+---
+
+## Using `forEach()`
+
+```java
+list.forEach(System.out::println);
+```
+
+---
+
+# 18. Sorting an ArrayList
+
+Import:
+
+```java
+import java.util.Collections;
+```
+
+## Ascending Order
+
+```java
+Collections.sort(list);
+```
+
+Example:
+
+```text
+Before: [5, 2, 8, 1]
+After:  [1, 2, 5, 8]
+```
+
+## Descending Order
+
+```java
+Collections.sort(list, Collections.reverseOrder());
+```
+
+Output:
+
+```text
+[8, 5, 2, 1]
+```
+
+---
+
+# 19. Reversing an ArrayList
+
+Use:
+
+```java
+Collections.reverse(list);
+```
+
+Example:
+
+```text
+Before: [1, 2, 3, 4]
+After:  [4, 3, 2, 1]
+```
+
+---
+
+# 20. Finding Maximum Element
+
+Use:
+
+```java
+Collections.max(list);
+```
+
+Example:
+
+```text
+[10, 50, 20, 30]
+```
+
+Result:
+
+```text
+50
+```
+
+---
+
+# 21. Finding Minimum Element
+
+Use:
+
+```java
+Collections.min(list);
+```
+
+Example:
+
+```text
+[10, 50, 20, 30]
+```
+
+Result:
+
+```text
+10
+```
+
+---
+
+# 22. Copying an ArrayList
+
+Create a new ArrayList using the existing list:
+
+```java
+ArrayList<Integer> copy = new ArrayList<>(list);
+```
+
+Now `copy` contains the same elements.
+
+```text
+list = [10, 20, 30]
+
+copy = [10, 20, 30]
+```
+
+---
+
+# 23. Converting ArrayList to Array
+
+```java
+Integer arr[] = list.toArray(new Integer[0]);
+```
+
+Example:
+
+```java
+ArrayList<Integer> list = new ArrayList<>();
+
+list.add(10);
+list.add(20);
+list.add(30);
+
+Integer arr[] = list.toArray(new Integer[0]);
+```
+
+---
+
+# 24. Converting Array to ArrayList
+
+```java
+Integer arr[] = {1, 2, 3};
+
+ArrayList<Integer> list =
+        new ArrayList<>(Arrays.asList(arr));
+```
+
+Required import:
+
+```java
+import java.util.Arrays;
+```
+
+---
+
+# 25. Nested ArrayList — 2D ArrayList
+
+An ArrayList can contain other ArrayLists.
+
+```java
+ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
+```
+
+Create a row:
+
+```java
+ArrayList<Integer> row1 = new ArrayList<>();
+
+row1.add(1);
+row1.add(2);
+```
+
+Add the row:
+
+```java
+matrix.add(row1);
+```
+
+Print:
+
+```java
+System.out.println(matrix);
+```
+
+Output:
+
+```text
+[[1, 2]]
+```
+
+### Example of a 2D ArrayList
+
+```java
+ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
+
+ArrayList<Integer> row1 = new ArrayList<>();
+row1.add(1);
+row1.add(2);
+
+ArrayList<Integer> row2 = new ArrayList<>();
+row2.add(3);
+row2.add(4);
+
+matrix.add(row1);
+matrix.add(row2);
+
+System.out.println(matrix);
+```
+
+Output:
+
+```text
+[[1, 2], [3, 4]]
+```
+
+---
+
+# 26. Capacity vs Size
+
+This is an important concept.
+
+```java
+ArrayList<Integer> list = new ArrayList<>(10);
+```
+
+Here:
+
+```text
+Initial Capacity = 10
+Size = 0
+```
+
+After:
+
+```java
+list.add(5);
+```
+
+Now:
+
+```text
+Capacity >= 10
+Size = 1
+```
+
+### Important
+
+**Size** = Number of elements currently stored.
+
+**Capacity** = Amount of internal storage available before resizing is required.
+
+Capacity and size are **not the same thing**.
+
+---
+
+# 27. Internal Working of ArrayList
+
+`ArrayList` internally uses an array.
+
+Suppose the internal array needs more space.
+
+When the current capacity is insufficient:
+
+1. A larger internal array is created.
+2. Existing elements are copied into the new array.
+3. The new element is added.
+4. The old array is discarded.
+
+The exact growth policy is an implementation detail of the Java version, so don't rely on a fixed rule such as exactly `1.5x` for interview answers unless discussing a specific JDK implementation.
+
+Conceptually:
+
+```text
+Small Array
+     ↓
+Resize
+     ↓
+Larger Array
+     ↓
+Copy Elements
+     ↓
+Add New Element
+```
+
+This resizing happens automatically.
+
+---
+
+# 28. Time Complexity
+
+| Operation             | Time Complexity |
+| --------------------- | --------------: |
+| `get(index)`          |            O(1) |
+| `set(index, value)`   |            O(1) |
+| `add(element)`        |  O(1) amortized |
+| `add(index, element)` |            O(n) |
+| `remove(last)`        |            O(1) |
+| `remove(index)`       |            O(n) |
+| `contains()`          |            O(n) |
+| `indexOf()`           |            O(n) |
+
+### Why is `add(index)` O(n)?
+
+Because elements may need to be shifted.
+
+Example:
+
+```text
+Before:
+[10, 20, 30, 40]
+
+Insert 15 at index 1:
+
+[10, 15, 20, 30, 40]
+      ↑
+Elements shifted →
+```
+
+---
+
+# 29. Array vs ArrayList
+
+| Array                                           | ArrayList                   |
+| ----------------------------------------------- | --------------------------- |
+| Fixed size                                      | Dynamic size                |
+| Can store primitives and objects                | Stores objects              |
+| Uses `length`                                   | Uses `size()`               |
+| Fewer built-in operations                       | Many useful methods         |
+| Can be more memory-efficient for primitive data | Has object/wrapper overhead |
+| Size cannot be changed directly                 | Automatically resizes       |
+
+---
+
+# 30. Important ArrayList Methods
+
+| Method          | Purpose                      |
+| --------------- | ---------------------------- |
+| `add()`         | Add element                  |
+| `get()`         | Access element               |
+| `set()`         | Update element               |
+| `remove()`      | Remove element               |
+| `size()`        | Get number of elements       |
+| `isEmpty()`     | Check whether empty          |
+| `contains()`    | Check whether element exists |
+| `indexOf()`     | Find first index             |
+| `lastIndexOf()` | Find last index              |
+| `clear()`       | Remove all elements          |
+| `toArray()`     | Convert to array             |
+
+---
+
+# 31. Important Interview Questions
+
+### Beginner
+
+1. What is ArrayList?
+2. Why is ArrayList called dynamic?
+3. How is ArrayList different from an array?
+4. How do you create an ArrayList?
+5. Why do we use `Integer` instead of `int`?
+6. What is a wrapper class?
+7. How do you add an element?
+8. How do you access an element?
+9. How do you update an element?
+10. How do you remove an element?
+
+### Intermediate
+
+11. Difference between `add()` and `set()`.
+12. Difference between `remove(int)` and `remove(Object)`.
+13. Difference between `size` and `capacity`.
+14. How does ArrayList work internally?
+15. What is the time complexity of `get()`?
+16. What is the time complexity of `add()`?
+17. What is the time complexity of `remove()`?
+18. Why is `add(index, element)` O(n)?
+19. Can ArrayList contain duplicate elements?
+20. Can ArrayList contain `null`?
+
+---
+
+# Quick Revision
+
+```text
+ArrayList
+   ↓
+Dynamic Array
+   ↓
+Stores Objects
+   ↓
+Wrapper Classes for primitives
+   ↓
+add()
+   ↓
+get()
+   ↓
+set()
+   ↓
+remove()
+   ↓
+size()
+   ↓
+contains()
+   ↓
+indexOf()
+   ↓
+isEmpty()
+   ↓
+clear()
+   ↓
+Traversal
+   ↓
+Sorting
+   ↓
+Reverse
+   ↓
+Nested ArrayList
+   ↓
+Capacity & Size
+   ↓
+Internal Working
+   ↓
+Time Complexity
+```
+
+## Conclusion
+
+`ArrayList` is one of the most important Java Collection classes for DSA.
+
+The most important methods to remember first are:
+
+```java
+add()
+get()
+set()
+remove()
+size()
+contains()
+indexOf()
+isEmpty()
+clear()
+```
+
+Once these are comfortable, move to **2D ArrayList, ArrayList with Strings, sorting, custom objects, and DSA problems using ArrayList**.
