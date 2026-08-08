@@ -55,6 +55,28 @@ public class linkedList {
         temp.next=newnNode;
         size++;
       }
+      public static void deletefirstnode(){
+        if(head==null){
+          size=0;
+          return;
+        }
+        head=head.next;
+        size--;
+        return ;
+      }
+      public static void deletelastnode(){
+        int i=1;
+        Node temp=head;
+        while (i<size-1) {
+          temp=temp.next;
+          
+          i++;
+        }
+        temp.next=null;
+        tail=temp;
+        size--;
+        return;
+      }
 
     
     public static void main(String args[]){
@@ -71,6 +93,12 @@ public class linkedList {
         ll.addlast(300);
         ll.printlinkedlist();
         ll.addmidle(2,9);
+        ll.printlinkedlist();
+        System.out.println("After deleting the first node");
+        ll.deletefirstnode();
+        ll.printlinkedlist();
+        System.out.println("after deleting the last node");
+        ll.deletelastnode();
         ll.printlinkedlist();
 
     }
