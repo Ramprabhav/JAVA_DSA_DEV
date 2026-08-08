@@ -7,13 +7,14 @@ public class linkedList {
         this.next=null;
      }
     }
+    static int size=0;
     public static Node head;
     public static Node tail;
     public static  void printlinkedlist(){
-      tail=head;
-      while (tail!=null) {
-        System.out.println(tail.data);
-        tail=tail.next;
+      Node temp=head;
+      while (temp!=null) {
+        System.out.println(temp.data);
+        temp=temp.next;
         
       }
     }
@@ -21,24 +22,24 @@ public class linkedList {
         Node newNode=new Node(data);
         if (head==null) {
             head=tail=newNode;
+            size++;
             return ;
         }
         newNode.next=head;
         head=newNode;
+        size++;
       }
       public static void addlast(int data){
         Node newNode= new Node(data);
         if (head==null) {
             head=tail=newNode;
+            size++;
             return;
             
         }
-        tail=head;
-        while(tail.next!=null){
-            tail=tail.next;
-        }
         tail.next=newNode;
-        newNode.next=null;
+        tail=newNode;
+        size++;
       }
       public static void addmidle(int index,int data){
         Node temp=head;
@@ -52,13 +53,14 @@ public class linkedList {
         }
         newnNode.next=temp.next;
         temp.next=newnNode;
+        size++;
       }
 
     
     public static void main(String args[]){
         linkedList ll=new linkedList();
-        ll.head=new Node(1);
-        ll.head.next=new Node(2);
+        ll.addfirst(10);
+        ll.addfirst(25);
         System.out.println("at first index");
         ll.addfirst(20);
         ll.printlinkedlist();
