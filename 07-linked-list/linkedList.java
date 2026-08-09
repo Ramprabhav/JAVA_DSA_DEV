@@ -78,6 +78,20 @@ public class linkedList {
         return;
       }
 
+      //reverse linkedlist
+      public static void reverseLinkedList(){
+        Node temp=head;
+        Node prev=null;
+        Node next;
+        while (temp!=null) {
+          next=temp.next;
+          temp.next=prev;
+          prev=temp;
+          temp=next;
+        }
+        head=prev;
+      }
+
     
     public static void main(String args[]){
         linkedList ll=new linkedList();
@@ -100,6 +114,11 @@ public class linkedList {
         System.out.println("after deleting the last node");
         ll.deletelastnode();
         ll.printlinkedlist();
+        System.out.println("Reversed LinkedList : ");
+      
+        ll.reverseLinkedList();
+        ll.printlinkedlist();
+
 
     }
     
