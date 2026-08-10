@@ -91,11 +91,81 @@ public class linkedList {
         }
         head=prev;
       }
+      public static void nthNodeFromEnd(int nth){
+        int i=1;
+        Node temp=head;
+        while(i<=size-nth){
+              temp=temp.next;
+              i++;
+        }
+        System.out.println(temp.data);
+        return;
+      }
+      //detecting cycle in linked list
+      public static boolean cycle(Node head){
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+          if(slow==fast){
+            return true;
+          }
+          slow=slow.next;
+          fast=fast.next.next;
+        }
+        return false;
+      }
 
+      //check whether linkedlist is palindrom 
+     public static Node findMid(Node head){
+      Node slow=head;
+      Node fast=head;
+      while(fast!=null && fast.next!=null){
+        slow=slow.next;
+        fast=fast.next.next;
+      }
+      return slow;
+     }
+
+     public static boolean isPalindrom(Node head){
+     Node mid=findMid(head);
+     Node prev=null;
+     Node temp=mid;
+     Node next;
+     while(temp!=null){
+      next=temp.next;
+      temp.next=prev;
+      prev=temp;
+      temp=next;
+     }
+     Node right=prev;
+     Node left=head;
+     while(right!=null){
+      if (left.data!=right.data) {
+        return false;
+      }
+      left=left.next;
+      right=right.next;
+     }
+     return true;
+     }
+     
     
     public static void main(String args[]){
         linkedList ll=new linkedList();
-        ll.addfirst(10);
+        ll.addfirst(1);
+         ll.addlast(1);
+          ll.addlast(2);
+           ll.addlast(2);
+            ll.addlast(2);
+             ll.addlast(1);
+        ll.addlast(1);
+
+        System.out.println(isPalindrom(head));
+
+
+       /* 
+       
+       ll.addfirst(10);
         ll.addfirst(25);
         System.out.println("at first index");
         ll.addfirst(20);
@@ -118,6 +188,13 @@ public class linkedList {
       
         ll.reverseLinkedList();
         ll.printlinkedlist();
+
+        System.out.println("nth node form the end : ");
+        ll.nthNodeFromEnd(2);
+
+        */
+        
+       
 
 
     }
