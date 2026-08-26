@@ -10,6 +10,30 @@ public class Binary_Tree {
         }
 
     }
+    //calculate height of the tree.....
+    public static int height(Node root){
+        if(root == null){
+            return 0;
+        }
+        int l = height(root.left);
+        int r = height(root.right);
+        return Math.max(l,r)+1;
+    }
+
+    public static int diameter(Node root){
+        if(root == null){
+            return 0;
+        }
+        int ld = diameter(root.left);
+        int lh = height(root.left);
+
+        int rd = diameter(root.right);
+        int rh = height(root.right);
+        int self = lh + rh + 1;
+        return Math.max(Math.max(ld,rd),self);
+    }
+
+
 
     public static int countNode(Node root){
         if(root == null){
@@ -31,5 +55,6 @@ public class Binary_Tree {
 
         Binary_Tree bt = new Binary_Tree();
         System.out.println("Number of Node in Tree: " + bt.countNode(root));
+        System.out.println("Diameter of the tree: " +  bt.diameter(root));
     }
 }
